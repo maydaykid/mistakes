@@ -1,0 +1,76 @@
+using System;
+
+namespace workBase
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Получен допуск администратора к базе данных компании 'GENERAL'.\nЗдесь будет представлена основная информация о рабониках: имя, \nфамилия и должность.\nНа данный момент база пуста.\nНажмите любую клавишу для вывода списка комманд.");
+            Console.ReadKey();
+            bool isWorking = true;
+            int documentNumber = 0;
+            string[] namesAndSurnames = new string[1];
+            string[] profession = new string[1];
+
+            while (isWorking)
+            {
+                Console.Clear();
+                Console.SetCursorPosition(0, 15);
+                Console.Write("Доступные команды:\nдобавить досье\nвывести все досье\nудалить досье\nпоиск по фамилии\nвыход");
+                Console.SetCursorPosition(0, 0);
+                Console.Write("Введите команду: ");
+                string userInputForCommand = Console.ReadLine();
+
+                switch(userInputForCommand)
+                {
+                    case ("добавить досье"):
+                        Console.Write("Введите имя и фамилию сотрудника: ");
+                        AddData(namesAndSurnames, documentNumber);
+                        Console.Write("Введите должность сотрудника: ");
+                        AddData(profession, documentNumber);
+                        Console.WriteLine((documentNumber + 1) + " " + namesAndSurnames[documentNumber] + ", " + profession[documentNumber]);
+                        Console.WriteLine("Данные успешно сохранены.");
+                        Console.ReadKey();
+                        documentNumber++;
+                        break;
+                    case ("вывести все досье"):
+                        for (int i = 0; i <= namesAndSurnames.Length; i++)
+                        {
+                           
+                        }
+                        break;
+                    case ("удалить досье"):
+
+                        break;
+                    case ("поиск по фамилии"):
+
+                        break;
+                    case ("выход"):
+                        Console.WriteLine("Спасибо за использование протоколов безопасности 'FURY'.\nВаши данные под надёжной защитой.");
+                        Console.ReadKey();
+                        Console.SetCursorPosition(0, 50);
+                        isWorking = false;
+                        break;
+                }
+            }
+        }
+
+        static string[] AddData(string[] data, int index)
+        {
+            data[index] = Console.ReadLine();
+            string[] tempArray = new string[data.Length + 1];
+            for(int i = 0; i < data.Length; i++)
+            {
+                tempArray[i] = data[i];
+            }
+            data = tempArray;
+            return data;
+        }
+
+        static void ViewAllDocuments(int number, string nameSurname, string profession)
+        {
+            Console.WriteLine((number + 1) + nameSurname + profession);
+        }
+    }
+}
